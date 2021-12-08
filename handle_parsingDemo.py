@@ -68,9 +68,17 @@ class parsingApi:
         workbook = xlsxwriter.Workbook('{}'.format(file_path))  # 建立文件
         worksheet = workbook.add_worksheet()  # 建立sheet
 
+        worksheet.write(0, 0, '{}'.format("name"))
+        worksheet.write(0, 1, '{}'.format("point_type"))
+        worksheet.write(0, 2, '{}'.format("time"))
+        worksheet.write(0, 3, '{}'.format("count"))
+        worksheet.write(0, 4, '{}'.format("yesOrNo"))
+
         temp = 0
 
         for index, item in enumerate(datas):
+            index = index + 1
+
             if len(item['values']) == 0:
                 index = index + temp
                 worksheet.write(index, 0, '{}'.format(item['name']))
