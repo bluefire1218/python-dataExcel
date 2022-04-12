@@ -26,8 +26,8 @@ class conTrastExcel:
     def __init__(self):
         # 读取excel文件
         # 括号中的字符串为你要比较的两个excel的路径，注意用“/”
-        wb_a = openpyxl.load_workbook('C:/Users/32295/Downloads/excel1.xlsx')
-        wb_b = openpyxl.load_workbook('C:/Users/32295/Downloads/excel2.xlsx')
+        wb_a = openpyxl.load_workbook('D:\Mine\scripeFile\GitHub\python-dataExcel\excel\excel1.xlsx')
+        wb_b = openpyxl.load_workbook('D:\Mine\scripeFile\GitHub\python-dataExcel\excel\excel2.xlsx')
         wb_s = Workbook()
         self.ws = wb_s.active
         self.ws.title = '对比结果'
@@ -97,49 +97,21 @@ class conTrastExcel:
         print("---datas值：{}".format(datas))
 
 
+        workbook = xlsxwriter.Workbook('excel/excel3.xlsx')  # 建立文件
+        worksheet = workbook.add_worksheet()  # 建立sheet
+
+        for index, item in enumerate(datas[0]):
+            worksheet.write(0, index, '{}'.format(item))
+
+        for index, item in enumerate(datas):
+            print("---item： {}".format(item))
+            worksheet.write(index, 0, '{}'.format(item[0]))
+            worksheet.write(index, 1, '{}'.format(item[1]))
+            worksheet.write(index, 2, '{}'.format(item[2]))
 
 
 
-
-        # workbook = xlsxwriter.Workbook('excel/excel3.xlsx')  # 建立文件
-        # worksheet = workbook.add_worksheet()  # 建立sheet
-        #
-        # titleData = ['column1', 'column2', 'column3']
-        #
-        #
-        #
-        # for index, item in enumerate(titleData):
-        #     worksheet.write(0, index, '{}'.format(item))
-        #
-        # temp = 0
-        #
-        # for index, item in enumerate(datas):
-        #     index = index + 1
-        #
-        #     if len(item['values']) == 0:
-        #         index = index + temp
-        #         worksheet.write(index, 0, '{}'.format(item['name']))
-        #         worksheet.write(index, 1, '{}'.format(item['point_type']))
-        #         worksheet.write(index, 2, '{}'.format(item['values']))
-        #     else:
-        #         for ind, it in enumerate(item['values']):
-        #             tm = index
-        #             if ind != 0:
-        #                 temp = temp + 1
-        #             index = index + temp
-        #             print("---it： {}".format(it))
-        #             print("---temp： {}".format(temp))
-        #             print("---index： {}".format(index))
-        #
-        #             worksheet.write(index, 0, '{}'.format(item['name']))
-        #             worksheet.write(index, 1, '{}'.format(item['point_type']))
-        #             worksheet.write(index, 2, '{}'.format(str(it[0])))
-        #             worksheet.write(index, 3, '{}'.format(str(it[1])))
-        #             worksheet.write(index, 4, '{}'.format(str(it[2])))
-        #
-        #             index = tm
-        #
-        # workbook.close()
+        workbook.close()
 
 
 
